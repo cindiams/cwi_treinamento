@@ -20,13 +20,19 @@ public class HomePage extends HomePageElementMapper {
     public void sendKeysSearch_query_top(String keys){
         search_query_top.sendKeys(keys);
     }
-    public void clickSubmitSearch(){
+    public void clickSubmit_search(){
         submit_search.click();
     }
 
     public void doSearch(String quest){
         clickSearch_query_top();
         sendKeysSearch_query_top(quest);
-        clickSubmitSearch();
+        clickSubmit_search();
     }
+    public void clickCategoryTShirts(){
+        menuTshirts.click();
+
+    }
+
+
 }

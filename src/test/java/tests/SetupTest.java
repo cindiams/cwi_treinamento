@@ -1,26 +1,27 @@
 package tests;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import pageObjects.CategoryPage;
 import pageObjects.HomePage;
 import pageObjects.LoginPage;
+import pageObjects.SearchPage;
 import utils.Browser;
 import utils.Utils;
 
-import java.util.Locale;
+import static org.junit.Assert.*;
 
-import static org.junit.Assert.assertTrue;
-
-public class SetupTest extends BaseTests{
+public class SetupTest extends BaseTests {
 
     @Test
-    public void testOpeningBrowserAndLoadingPage(){
+    public void testOpeningBrowserAndLoadingPage() {
         assertTrue(Browser.getCurrentDriver().getCurrentUrl().contains(Utils.getBaseUrl()));
         System.out.println("Abrimos o navegador e carregamos a url");
     }
 
     @Test
-    public void testLogin(){
+    public void testLogin() {
         //Iniciar as páginas
         HomePage home = new HomePage();
         LoginPage login = new LoginPage();
@@ -46,9 +47,30 @@ public class SetupTest extends BaseTests{
     }
 
     @Test
-    public void testSearch(){
+    public void testSearch() {
+
+        String quest = "DRESS";
+        String questResultQtd = "7";
+
         HomePage home = new HomePage();
-        home.doSearch("dress");
+        SearchPage search = new SearchPage();
+
+        home.doSearch(quest);
+
+        assertTrue(search.isSearchPage());
+        assertEquals(quest, search.getTextLighter().replace("\"", ""));
+        assertThat(search.getTextHeading_counter(), CoreMatchers.containsString(questResultQtd));
     }
+
+    @Test
+    public void testAcessCategoryTShirt(){
+        HomePage home = new HomePage();
+        CategoryPage category = new CategoryPage();
+
+        home.clickCategoryTShirts();
+
+        assertTrue(category.isPageTshirts());
+    }
+
 
 }
