@@ -85,6 +85,23 @@ public class SetupTest extends BaseTests {
 
     }
 
+    @Test
+    public void testAddProductToCartPage(){
+        testAddProductToProductPage();
+
+        ProductPage pdp = new ProductPage();
+
+        CartPage cart = new CartPage();
+
+        String nameProductPDP = pdp.getProductNamePDP();
+
+        pdp.clickButtonAddToCart();
+
+        pdp.clickButtonModalProceedToCheckout();
+
+        assertTrue(cart.getNameProductCart().equals(nameProductPDP));
+
+    }
 
 
 }
