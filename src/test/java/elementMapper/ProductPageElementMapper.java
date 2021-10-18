@@ -11,6 +11,9 @@ public class ProductPageElementMapper {
     @FindBy(css = "#add_to_cart > button")
     public WebElement buttonAddProductToCart;
 
+    @FindBy(css = "header [class='clearfix']")
+    public WebElement clearfix;
+
     @FindBy(css = ".button-container a[title='Proceed to checkout']")
     public WebElement buttonModalProceedToCheckout;
 

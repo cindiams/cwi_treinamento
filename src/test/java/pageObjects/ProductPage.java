@@ -9,14 +9,13 @@ public class ProductPage extends ProductPageElementMapper {
     public ProductPage(){
         PageFactory.initElements(Browser.getCurrentDriver(), this);
     }
-
     public String getProductNamePDP(){
         return productNamePDP.getText();
     }
     public void clickButtonAddToCart(){
        buttonAddProductToCart.click();
     }
-    public void clickButtonModalProceedToCheckout(){
+    public void clickButtonModalProceedToCheckout() {
         buttonModalProceedToCheckout.click();
     }
 }

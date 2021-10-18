@@ -13,8 +13,9 @@ public class SetupTest extends BaseTests {
 
     @Test
     public void testOpeningBrowserAndLoadingPage() {
+
         assertTrue(Browser.getCurrentDriver().getCurrentUrl().contains(Utils.getBaseUrl()));
-        System.out.println("Abrimos o navegador e carregamos a url");
+
     }
 
     @Test
@@ -29,17 +30,17 @@ public class SetupTest extends BaseTests {
                 .contains(Utils.getBaseUrl().concat("index.php?controller=authentication&back=my-account")));
 
         login.fillEmail();
-        System.out.println("Preencheu o e-mail");
+
         login.fillPasswd();
-        System.out.println("Preencheu a senha");
+
         login.clickBtnSubmitLogin();
-        System.out.println("Clicou em Sign In");
+
         assertTrue(Browser.getCurrentDriver().getCurrentUrl()
                 .contains(Utils.getBaseUrl().concat("index.php?controller=my-account")));
-        System.out.println("Validou a url da minha conta");
+
         assertTrue(Browser.getCurrentDriver().findElement(By.className("page-heading"))
                 .getText().contains("MY ACCOUNT"));
-        System.out.println("Validou minha conta no site");
+
 
     }
 
@@ -105,14 +106,37 @@ public class SetupTest extends BaseTests {
     }
 
     @Test
+    public void testPurchasePage(){
+        testLogin();
+
+        testAddProductToCartPage();
+
+        PurchasePage purchase = new PurchasePage();
+
+        purchase.clickProceedToCheckoutButton();
+
+        purchase.clickProceedToCheckoutButtonAddress();
+
+        purchase.clickAgreeToTheTermsService();
+
+        purchase.clickProceedToCheckoutButton2();
+
+        purchase.clickPayByBankWirePaymentOption();
+
+        purchase.clickIConfirmMyOrderButton();
+        assertTrue(Browser.getCurrentDriver().findElement(By.className("page-heading"))
+                .getText().contains("ORDER CONFIRMATION"));
+
+
+    }
+
+    @Test
     public void testCreateAnAccount(){
         HomePage home = new HomePage();
         MyAccountPage create = new MyAccountPage();
         CreateAnAccountPage authentication = new CreateAnAccountPage();
 
         home.clickBtnLogin();
-        assertTrue(Browser.getCurrentDriver().getCurrentUrl()
-                .contains(Utils.getBaseUrl().concat("index.php?controller=authentication&back=my-account")));
 
         create.fillEmailAdress();
 
@@ -141,7 +165,6 @@ public class SetupTest extends BaseTests {
         authentication.clickBtnSubmitAccount();
         assertTrue(Browser.getCurrentDriver().findElement(By.className("page-heading"))
                 .getText().contains("MY ACCOUNT"));
-
     }
 
 }
