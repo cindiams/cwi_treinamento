@@ -139,6 +139,8 @@ public class SetupTest extends BaseTests {
         authentication.adressAlias();
 
         authentication.clickBtnSubmitAccount();
+        assertTrue(Browser.getCurrentDriver().findElement(By.className("page-heading"))
+                .getText().contains("MY ACCOUNT"));
 
     }
 
