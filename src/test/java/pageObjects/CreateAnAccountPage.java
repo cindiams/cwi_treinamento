@@ -13,12 +13,38 @@ public class CreateAnAccountPage extends CreateAnAccountPageElementMaper {
 
         id_gender2.click();
     }
-    public void firstName(String name){
+    public void firstName(){
 
-        customer_firstname.getText();
+        customer_firstname.sendKeys("Cíndia");
     }
-    public void lastName(String lastName){
+    public void lastName(){
 
-        customer_lastname.getText();
+        customer_lastname.sendKeys("Moraes");
     }
+    public void password() {
+        passwd.sendKeys("abc123");
+    }
+    public void adress(){
+        address1.sendKeys("Rua Feliz");
+    }
+    public void city(){
+        city.sendKeys("Scranton");
+    }
+    public void state(){
+        id_state.sendKeys("Pennsylvania");
+    }
+    public void postalCode(){
+        postcode.sendKeys("18508");
+    }
+    public void mobilePhone(){
+        phone_mobile.sendKeys("555555555");
+    }
+    public void adressAlias(){
+        alias.sendKeys("Rua Feliz");
+    }
+    public void clickBtnSubmitAccount(){
+        submitAccount.click();
+    }
+
+
 }

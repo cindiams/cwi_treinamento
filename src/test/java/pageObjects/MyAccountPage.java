@@ -10,10 +10,10 @@ public class MyAccountPage extends MyAccountPageElementMapper {
     }
 
     public void fillEmailAdress(){
-        email_create.sendKeys("cms@gmail.com");
+        email_create.sendKeys("rms@gmail.com");
     }
     public void clickBtnSubmitCreate(){
         SubmitCreate.click();
-
     }
+
 }

@@ -110,27 +110,35 @@ public class SetupTest extends BaseTests {
         MyAccountPage create = new MyAccountPage();
         CreateAnAccountPage authentication = new CreateAnAccountPage();
 
-        String name = "Cíndia";
-        String lastName = "Moraes";
-
         home.clickBtnLogin();
         assertTrue(Browser.getCurrentDriver().getCurrentUrl()
                 .contains(Utils.getBaseUrl().concat("index.php?controller=authentication&back=my-account")));
 
         create.fillEmailAdress();
-        System.out.println("Preencheu o e-mail");
 
         create.clickBtnSubmitCreate();
-        System.out.println("Clicou no botão Create An account");
 
         authentication.clickGender();
-        System.out.println("Clicou no Title Mrs");
 
-        authentication.firstName(name);
-        System.out.println("Digitou o primeiro nome");
+        authentication.firstName();
 
-        authentication.lastName(lastName);
-        System.out.println("Digitou o sobrenome");
+        authentication.lastName();
+
+        authentication.password();
+
+        authentication.adress();
+
+        authentication.city();
+
+        authentication.state();
+
+        authentication.postalCode();
+
+        authentication.mobilePhone();
+
+        authentication.adressAlias();
+
+        authentication.clickBtnSubmitAccount();
 
     }
 
