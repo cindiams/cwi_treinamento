@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -9,9 +11,11 @@ import utils.Utils;
 
 import static org.junit.Assert.*;
 
+@Feature("Testes site de e-commerce http://automationpractice.com/")
 public class SetupTest extends BaseTests {
 
     @Test
+    @Story("Abrir o site")
     public void testOpeningBrowserAndLoadingPage() {
 
         assertTrue(Browser.getCurrentDriver().getCurrentUrl().contains(Utils.getBaseUrl()));
@@ -19,13 +23,13 @@ public class SetupTest extends BaseTests {
     }
 
     @Test
+    @Story("Realizar o login")
     public void testLogin() {
-        //Iniciar as páginas
         HomePage home = new HomePage();
         LoginPage login = new LoginPage();
 
         home.clickBtnLogin();
-        System.out.println("Clicou em Sign In e direcionou para a págna de login");
+
         assertTrue(Browser.getCurrentDriver().getCurrentUrl()
                 .contains(Utils.getBaseUrl().concat("index.php?controller=authentication&back=my-account")));
 
@@ -41,10 +45,10 @@ public class SetupTest extends BaseTests {
         assertTrue(Browser.getCurrentDriver().findElement(By.className("page-heading"))
                 .getText().contains("MY ACCOUNT"));
 
-
     }
 
     @Test
+    @Story("Realizar uma busca no site")
     public void testSearch() {
 
         String quest = "DRESS";
@@ -58,9 +62,11 @@ public class SetupTest extends BaseTests {
         assertTrue(search.isSearchPage());
         assertEquals(quest, search.getTextLighter().replace("\"", ""));
         assertThat(search.getTextHeading_counter(), CoreMatchers.containsString(questResultQtd));
+
     }
 
     @Test
+    @Story("Acessar categoria")
     public void testAcessCategoryTShirt(){
         HomePage home = new HomePage();
         CategoryPage category = new CategoryPage();
@@ -68,9 +74,11 @@ public class SetupTest extends BaseTests {
         home.clickCategoryTShirts();
 
         assertTrue(category.isPageTshirts());
+
     }
 
     @Test
+    @Story("Acessar página de produto")
     public void testAddProductToProductPage(){
         testAcessCategoryTShirt();
 
@@ -82,11 +90,12 @@ public class SetupTest extends BaseTests {
 
         category.clickProductAddToProductPage();
 
-        assertTrue(pdp.getProductNamePDP().equals(nameProductCategory));
+        assertEquals(pdp.getProductNamePDP(), nameProductCategory);
 
     }
 
     @Test
+    @Story("Adicionar um produto no carrinho")
     public void testAddProductToCartPage(){
 
         testAddProductToProductPage();
@@ -101,11 +110,12 @@ public class SetupTest extends BaseTests {
 
         pdp.clickButtonModalProceedToCheckout();
 
-        assertTrue(cart.getNameProductCart().equals(nameProductPDP));
+        assertEquals(cart.getNameProductCart(), nameProductPDP);
 
     }
 
     @Test
+    @Story("Finalizar uma compra")
     public void testPurchasePage(){
         testLogin();
 
@@ -124,13 +134,14 @@ public class SetupTest extends BaseTests {
         purchase.clickPayByBankWirePaymentOption();
 
         purchase.clickIConfirmMyOrderButton();
+
         assertTrue(Browser.getCurrentDriver().findElement(By.className("page-heading"))
                 .getText().contains("ORDER CONFIRMATION"));
-
 
     }
 
     @Test
+    @Story("Criar uma conta no site")
     public void testCreateAnAccount(){
         HomePage home = new HomePage();
         MyAccountPage create = new MyAccountPage();
@@ -165,6 +176,7 @@ public class SetupTest extends BaseTests {
         authentication.clickBtnSubmitAccount();
         assertTrue(Browser.getCurrentDriver().findElement(By.className("page-heading"))
                 .getText().contains("MY ACCOUNT"));
+
     }
 
 }
